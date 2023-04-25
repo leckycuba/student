@@ -1,0 +1,17 @@
+[
+    {
+        "id": 5,
+        "nombre": "Petyr",
+        "apellido": "Baelish",
+        "estado": false,
+        "edad": 32
+    },
+    {
+        "id": 6,
+        "nombre": "Theon",
+        "apellido": "Greyjoy",
+        "estado": true,
+        "edad": 30
+    }
+
+]
