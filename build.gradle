@@ -1,0 +1,62 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.7'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'com.diffplug.eclipse.apt' version '3.26.0'
+	id 'org.sonarqube' version '4.0.0.2929'
+	id 'jacoco'
+}
+
+group = 'com.lecky'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.mapstruct:mapstruct:1.5.4.Final'
+	implementation 'com.h2database:h2'
+	implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.7.0'
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'io.r2dbc:r2dbc-h2'
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.4.Final'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+    testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.5.4.Final'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+jacocoTestReport {
+	reports {
+	    xml.enabled true
+	    html.enabled true
+	    csv.enabled true
+	}
+}
+
+sonarqube {
+    properties {
+        property 'sonar.exclusions', '**/model/**.java, **/StudentApplication.java'
+        property 'sonar.projectKey', 'student'
+        property 'sonar.projectName', 'student'
+        property 'sonar.host.url', 'http://localhost:9000'
+        property 'sonar.token', 'sqp_f9ec72b06f17e00760e65a7645f4fedefc3d0622'
+    }
+}

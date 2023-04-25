@@ -1,0 +1,17 @@
+[
+    {
+        "id": 5,
+        "name": "Petyr",
+        "lastName": "Baelish",
+        "status": false,
+        "age": 32
+    },
+    {
+        "id": 6,
+        "name": "Theon",
+        "lastName": "Greyjoy",
+        "status": true,
+        "age": 30
+    }
+
+]
