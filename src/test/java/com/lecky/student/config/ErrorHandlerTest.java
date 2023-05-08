@@ -4,11 +4,6 @@ package com.lecky.student.config;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import com.lecky.student.constant.Constants;
-import com.lecky.student.model.dto.ErrorResponse;
-
-import io.r2dbc.spi.R2dbcDataIntegrityViolationException;
-
 import java.util.Arrays;
 
 import org.h2.api.ErrorCode;
@@ -20,6 +15,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.support.WebExchangeBindException;
+
+import com.lecky.student.constant.Constants;
+import com.lecky.student.model.dto.ErrorResponse;
+
+import io.r2dbc.spi.R2dbcDataIntegrityViolationException;
 
 @ExtendWith(MockitoExtension.class)
 class ErrorHandlerTest {
