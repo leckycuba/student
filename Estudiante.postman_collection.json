@@ -1,25 +1,46 @@
 {
 	"info": {
-		"_postman_id": "a73aa77e-ead7-49e6-a406-601fbbbf082d",
+		"_postman_id": "de97542a-971b-447a-ae9c-9fbb444ee3db",
 		"name": "Estudiante",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "9578474"
 	},
 	"item": [
 		{
-			"name": "Listar",
+			"name": "Listar estudiantes activos",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/estudiante",
+					"raw": "http://localhost:8080/estudiante/activo",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"estudiante"
+						"estudiante",
+						"activo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar estudiantes inactivos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/estudiante/inactivo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"estudiante",
+						"inactivo"
 					]
 				}
 			},
@@ -32,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 10,\r\n    \"nombre\": \"Robert\",\r\n    \"apellido\": \"Baratheon\",\r\n    \"estado\": true,\r\n    \"edad\": 31\r\n}",
+					"raw": "{\r\n    \"id\": 20,\r\n    \"nombre\": \"Robert\",\r\n    \"apellido\": \"Baratheon\",\r\n    \"estado\": true,\r\n    \"edad\": 31\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

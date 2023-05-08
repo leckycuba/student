@@ -1,14 +1,13 @@
 
-package com.lecky.student.service.save.impl;
+package com.lecky.student.service.save;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.lecky.student.mapper.StudentMapper;
 import com.lecky.student.model.dto.StudentRequest;
 import com.lecky.student.model.entity.StudentEntity;
 import com.lecky.student.repository.StudentRepository;
-import com.lecky.student.service.save.StudentSaveService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import reactor.core.publisher.Mono;
 

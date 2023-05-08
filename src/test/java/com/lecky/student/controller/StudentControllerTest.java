@@ -1,12 +1,7 @@
 package com.lecky.student.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-
-import com.lecky.student.model.dto.StudentRequest;
-import com.lecky.student.model.dto.StudentResponse;
-import com.lecky.student.service.list.StudentListService;
-import com.lecky.student.service.save.StudentSaveService;
-import com.lecky.student.util.TestUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +14,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
+import com.lecky.student.model.dto.StudentRequest;
+import com.lecky.student.model.dto.StudentResponse;
+import com.lecky.student.service.findbystatusfalse.StudentFindByStatusFalseService;
+import com.lecky.student.service.findbystatustrue.StudentFindByStatusTrueService;
+import com.lecky.student.service.save.StudentSaveService;
+import com.lecky.student.util.TestUtils;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
@@ -29,7 +31,9 @@ class StudentControllerTest {
 	@Mock
 	private StudentSaveService studentSaveService;
 	@Mock
-	private StudentListService studentListService;
+	private StudentFindByStatusTrueService studentFindByStatusTrueService;
+	@Mock
+	private StudentFindByStatusFalseService studentFindByStatusFalseService;
 	
 	@InjectMocks
 	private StudentController controller;
@@ -52,18 +56,30 @@ class StudentControllerTest {
 	}
 	
 	@Test
-	@DisplayName("Return a list of response when recive a request")
-	void ReturnAListOfResponseWhenReciveARequest() throws IOException {
+	@DisplayName("Return reactive response when recive a request")
+	void ReturnReactiveResponseWhenReciveARequest() throws IOException {
 		
 		List<StudentResponse> studentResponseList = TestUtils.generateList("mock/studentResponseList.json", StudentResponse.class);
 		
-		when(studentListService.findByStatusTrue()).thenReturn(Flux.fromIterable(studentResponseList));
+		when(studentFindByStatusTrueService.findByStatusTrue()).thenReturn(Flux.fromIterable(studentResponseList));
 		
 		StepVerifier
 		  .create(controller.findByStatusTrue())
 		  .expectNext(studentResponseList.get(0))
 		  .expectNext(studentResponseList.get(1))
 		  .verifyComplete();
+		
+	}
+	
+	@Test
+	@DisplayName("Return non reactive response when recive a request")
+	void ReturnNonReactiveResponseWhenReciveARequest() throws IOException {
+		
+		List<StudentResponse> studentResponseList = TestUtils.generateList("mock/studentResponseList.json", StudentResponse.class);
+		
+		when(studentFindByStatusFalseService.findByStatusFalse()).thenReturn(studentResponseList);
+		
+		assertEquals(studentResponseList, controller.findByStatusFalse());
 		
 	}
 	
